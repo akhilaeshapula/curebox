@@ -127,7 +127,7 @@ def provideFeedback_post(bookingId : str):
         booking.rating = rating
         booking.feedback = feedback
         db.session.commit()
-        return render_template('patient/viewAppointments.html')
+        return redirect(url_for('patientUtility.patient'))
 
 @patientUtility.route('/patient')
 @login_required

@@ -32,7 +32,7 @@ def searchdoctor():
     print(records)
     diseases = db.engine.execute("select name from disease;")
     locations = db.engine.execute("select distinct h.location from hospital h join doctor d on h.id = d.hospital_id order by 1")
-    return render_template('patient/patient.html', name=current_user.first_name, doctors = records ,diseases = diseases, locations = locations)
+    return render_template('patient/patient.html', name='patient', doctors = records ,diseases = diseases, locations = locations)
 
 
 @doctorUtility.route('/completeAppointment/<string:patientId>',methods=['GET','POST'])
