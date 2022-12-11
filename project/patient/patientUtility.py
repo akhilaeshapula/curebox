@@ -127,7 +127,11 @@ def provideFeedback_post(bookingId : str):
         booking.rating = rating
         booking.feedback = feedback
         db.session.commit()
-        return redirect(url_for('patientUtility.patient'))
+        records = db.engine.execute("select u.first_name,u.last_name,d.fees,h.location, (case when d.rating is null Then 0 else d.rating end) as rating,d.profile_pic from doctor d natural join public.user u,hospital h where d.hospital_id = h.id;")
+        print('After records')
+        diseases = db.engine.execute("select name from disease;")
+        locations = db.engine.execute("select distinct h.location from hospital h join doctor d on h.id = d.hospital_id order by 1")
+        return render_template('patient/patient.html', name='patient', doctors = records ,diseases = diseases, locations = locations)
 
 @patientUtility.route('/patient')
 @login_required
