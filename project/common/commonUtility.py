@@ -49,7 +49,7 @@ def getQuery(searchquery,disease,covid_care,location):
         # print('disease is ',disease)
         # print('covid_care is ',covid_care)
         # print('location is ',location)
-        query = "select distinct u.first_name ,u.last_name, h.location , doc.fees  from doctor_disease dd natural join doctor doc natural join public.user u , hospital h "
+        query = "select distinct u.first_name ,u.last_name, doc.fees, h.location,  (case when doc.rating is null Then 0 else doc.rating end) as rating , doc.profile_pic from doctor_disease dd natural join doctor doc natural join public.user u , hospital h "        
         queryCondition = "where 1 = 1 and doc.hospital_id = h.id "
         if(len(searchquery) > 0):
            queryCondition += " and UPPER(u.first_name) like UPPER('" + searchquery + "')";

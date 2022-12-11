@@ -213,7 +213,7 @@ def bookAppointmentPost():
 
     
 
-    apt = Booking(patient_id = userid,doctor_id= doctor_record.id,start_time=startdatetimeVal,end_time=enddatetimeVal,date=apt_date,status='OPEN')
+    apt = Booking(patient_id = userid,doctor_id= doctor_record.id,start_time=startdatetimeVal,end_time=enddatetimeVal,date=apt_date,status='OPEN',fees=doctor_record.fees)
     db.session.add(apt)
     db.session.commit()
     return render_template('patient/bookAppointment.html',msg="Success")
@@ -246,7 +246,10 @@ def InsurancePackageBuy(token,insur_id):
     update_details = Patient.query.filter_by(id = current_user.id).first()
     print("details",update_details)
     print(type(token),type(update_details.price_package))
-    update_details.price_package = int(token) + update_details.price_package
+    if update_details.price_package:
+        update_details.price_package = int(token) + update_details.price_package
+    else:
+        update_details.price_package = int(token)
     db.session.commit()
     update_insurance = InsuranceProvider.query.filter_by(id=insur_id).first()
     print("update_insurance",update_insurance)
