@@ -17,7 +17,7 @@ def create_app():
     app = Flask(__name__)
     UPLOAD_FOLDER = 'project/static/images/'
     app.config['SECRET_KEY'] = 'root'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/test'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://root:3FEAztw5rBX04nqVaIhEm5MAsjJ93mSK@dpg-ceag0h14reb52ur6nm6g-a.oregon-postgres.render.com/test_dr3g'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     db.init_app(app)
     mail.init_app(app)
