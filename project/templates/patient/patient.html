@@ -1488,7 +1488,7 @@ html{
 
             <div class="col-lg-6 profile-box">
               <div class="media d-flex">
-                <img style="width: 160px; height: 200px;" class ="mr-4" src="static/images/doc-1.jpg" alt="">
+                <img style="width: 160px; height: 200px;" class ="mr-4" src="{{url_for('static', filename='images/' + doctor[5])}}" alt="">
                 <div class="media-body flex-grow-1">
                   
                   <h3>{{doctor[0]}} {{doctor[1]}}  </h3>
